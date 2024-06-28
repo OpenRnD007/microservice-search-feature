@@ -8,8 +8,9 @@ import { HttpError } from '../error/index';
 import { sendHttpErrorModule } from '../error/sendHttpError';
 
 /**
+ * Configures the Express application with necessary middlewares.
  * @export
- * @param {express.Application} app
+ * @param {express.Application} app - The Express application instance to configure.
  */
 export function configure(app: express.Application): void {
     // express middleware
@@ -43,14 +44,18 @@ export function configure(app: express.Application): void {
         next();
     });
 }
-
+/**
+ * Extends the express.Response interface to include a custom method for sending HTTP errors.
+ */
 interface CustomResponse extends express.Response {
-    sendHttpError: (error: HttpError | Error, message ? : string) => void;
+    sendHttpError: (error: HttpError | Error, message?: string) => void;
 }
 
 /**
+ * Initializes the global error handler for the Express application.
+ * 
  * @export
- * @param {express.Application} app
+ * @param {express.Application} app - The Express application instance to configure.
  */
 export function initErrorHandler(app: express.Application): void {
     app.use((error: Error, req: express.Request, res: CustomResponse) => {

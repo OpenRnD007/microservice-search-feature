@@ -6,11 +6,12 @@ import { formElasticQueryObject } from '../utils';
 
 
 /**
+ * Retrieves all data based on the search parameters provided in the request body.
  * @export
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
- * @returns {Promise < void >}
+ * @param {Request} req - The request object containing the search parameters.
+ * @param {Response} res - The response object used to send back the retrieved data.
+ * @param {NextFunction} next - The next middleware function in the stack.
+ * @returns {Promise<void>} - A promise that resolves when the data has been sent.
  */
 export async function getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -24,11 +25,13 @@ export async function getAll(req: Request, res: Response, next: NextFunction): P
 }
 
 /**
+ * Provides autocomplete suggestions based on the partial information provided in the request body.
+ * 
  * @export
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
- * @returns {Promise < void >}
+ * @param {Request} req - The request object containing the partial search information.
+ * @param {Response} res - The response object used to send back the autocomplete suggestions.
+ * @param {NextFunction} next - The next middleware function in the stack.
+ * @returns {Promise<void>} - A promise that resolves when the suggestions have been sent.
  */
 export async function autoComplete(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {

@@ -1,6 +1,7 @@
 import { elasticClient } from '../config/connection';
 import { ISearchParams } from './search/interface';
 
+// Environment variables for Elasticsearch configuration.
 const ELAST_INDEX = process.env.ELAST_INDEX
 const ELAST_RESULT = Number(process.env.ELAST_RESULT)
 const ELAST_AUTO_COMPLETE_KEY = process.env.ELAST_AUTO_COMPLETE_KEY
@@ -8,9 +9,10 @@ const ELAST_AUTO_COMPLETE_RESULT = process.env.ELAST_AUTO_COMPLETE_RESULT.split(
 
 
 /**
- * 
- * @param info ISearchParams
- * @returns 
+ * Executes a search query on Elasticsearch and returns the results.
+ *
+ * @param {ISearchParams} info - The search parameters for the query.
+ * @returns {Promise<any[]>} - A promise that resolves to an array of search results.
  */
 export const queryElastic = async (info: ISearchParams) => {
     const {
@@ -26,14 +28,16 @@ export const queryElastic = async (info: ISearchParams) => {
         size
     })
 
+    // Maps the search hits to return only the source data.
     return results.hits.hits.map(e => e._source)
 }
 
 
 /**
- * 
- * @param info ISearchParams
- * @returns 
+ * Executes an autocomplete search query on Elasticsearch and returns the suggestions.
+ *
+ * @param {ISearchParams} info - The search parameters for the autocomplete query.
+ * @returns {Promise<any[]>} - A promise that resolves to an array of autocomplete suggestions.
  */
 export const autoCompleteElastic = async (info: ISearchParams) => {
     const {
@@ -54,14 +58,16 @@ export const autoCompleteElastic = async (info: ISearchParams) => {
         size
     })
 
+    // Maps the search hits to return only the specified fields.
     return results.hits.hits.map(e => e["fields"])
 }
 
 
 /**
- * 
- * @param info 
- * @returns 
+ * Forms the Elasticsearch query object based on the provided information.
+ *
+ * @param {any} info - The information containing search terms and pagination details.
+ * @returns {ISearchParams} - The formed search parameters for Elasticsearch queries.
  */
 export const formElasticQueryObject = (info: any): ISearchParams => {
 
