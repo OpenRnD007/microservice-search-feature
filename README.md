@@ -53,7 +53,7 @@ Contributions to this project are welcome. To contribute:
 5. Create a new Pull Request.
 
 ## License
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [MIT License](LICENSE).
 
 ## TODO
 - Tests
